@@ -21,7 +21,7 @@ rake db:migrate
 
 Hearsay gives you two new class methods on your models:
 
-* references association_name, attribute, options
+* references association_name, options
 * referenced_by association_name, options
 
 For complete usage, check the [rdoc](http://something-here.com/documentation).

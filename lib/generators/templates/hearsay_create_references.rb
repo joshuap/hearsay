@@ -3,6 +3,7 @@ class HearsayCreateReferences < ActiveRecord::Migration
     create_table :references do |t|
       t.references :referencer, :polymorphic => true
       t.references :referenceable, :polymorphic => true
+      t.string :attribute_name
       
       t.timestamps
     end
