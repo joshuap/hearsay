@@ -6,17 +6,20 @@ reference other models.
 # Installation
 
 Add the gem to your Gemfile:
+  
+  $ cat Gemfile
+  ...
+  gem 'hearsay'
+  ...
 
-```
-gem 'hearsay'
-```
+Install it with bundler:
+  
+  $ bundle install
 
 Run the generator to get the migration, and then migrate your database:
 
-```sh
-rails g hearsay
-rake db:migrate
-```
+  $ rails g hearsay
+  $ rake db:migrate
 
 # Useage
 
@@ -28,7 +31,7 @@ Hearsay gives you two new class methods on your models:
 The best way to explain the behavior is by example. Say I have a help desk app with the
 following models:
 
-```ruby
+``` ruby
 class Issue < ActiveRecord::Base
   has_many :comments, :polymorphic => true
   referenced_by :referencing_comments, :method => :body, :class_name => 'Comment'
@@ -36,7 +39,7 @@ class Issue < ActiveRecord::Base
 end
 ```
 
-```ruby
+``` ruby
 class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   references :issues, :method => :body, :matcher => /#([0-9]+)/i, :finder => :find_by_number
@@ -44,7 +47,9 @@ class Comment < ActiveRecord::Base
 end
 ```
 
-```ruby
+Next, I create a few issues, and finally a comment on one of them:
+
+``` ruby
 Issue.create(:number => 1)
 
 issue = Issue.create(:number => 2)
@@ -61,3 +66,7 @@ that reference a specific issue, for instance.
 
 * documentation
 * tests
+
+# Contributing
+
+Contributions are welcome!
