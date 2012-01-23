@@ -31,7 +31,7 @@ following models:
 ```ruby
 class Issue < ActiveRecord::Base
   has_many :comments, :polymorphic => true
-  referenced_by :comments, :method => :body
+  referenced_by :referencing_comments, :method => :body, :class_name => 'Comment'
   ...
 end
 ```
