@@ -18,7 +18,7 @@ Install it with bundler:
 
 Run the generator to get the migration, and then migrate your database:
 
-  $ rails g hearsay
+  $ rails generate hearsay
   $ rake db:migrate
 
 # Useage
