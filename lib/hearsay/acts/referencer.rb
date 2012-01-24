@@ -10,7 +10,7 @@ module Hearsay
           send(:include, Hearsay::Acts::Referencer::InstanceMethods) unless self.included_modules.include?(Hearsay::Acts::Referencer::InstanceMethods)
           
           attribute_name = options.delete(:method)
-          raise ArgumentError, ":method is required for references" if attribute_name.blank?
+          raise ArgumentError, ":method option is required for references" if attribute_name.blank?
           
           association_name = "#{source_name.to_s.singularize}_references".to_sym
           
