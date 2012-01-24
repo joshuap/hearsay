@@ -6,6 +6,17 @@ module Hearsay
       end 
 
       module ClassMethods
+        # Public: Set up referencer assocations
+        #
+        # source_name  - The name of the source association (model referencing object)
+        # options - Options hash
+        #
+        # Examples
+        #
+        #   referenced_by :issues, :method => :summary
+        #   referenced_by :referencing_tweets, :method => :body, :class_name => 'Tweet'
+        #
+        # Returns nothing.
         def referenced_by(source_name, options = {})
           send(:include, Hearsay::Acts::Referenceable::InstanceMethods) unless self.included_modules.include?(Hearsay::Acts::Referenceable::InstanceMethods)
           
@@ -27,14 +38,6 @@ module Hearsay
               :source_type => (options[:class_name] || source_name.to_s.classify)
           end
         end
-      end
-
-      module InstanceMethods
-        def self.included(base)
-          base.extend ClassMethods
-        end
-
-        module ClassMethods; end
       end
     end
   end
