@@ -28,7 +28,7 @@ module Hearsay
       #
       # Returns nothing.
       def references(source_name, options = {})
-        send(:include, Hearsay::Acts::Referencer::InstanceMethods) unless self.included_modules.include?(Hearsay::Acts::Referencer::InstanceMethods)
+        send(:include, Hearsay::Referencer::InstanceMethods) unless self.included_modules.include?(Hearsay::Referencer::InstanceMethods)
         
         attribute_name = options.delete(:method)
         raise ArgumentError, ":method option is required for references" if attribute_name.blank?
