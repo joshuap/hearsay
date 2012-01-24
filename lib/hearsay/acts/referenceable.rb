@@ -9,7 +9,10 @@ module Hearsay
         # Public: Set up referencer assocations
         #
         # source_name  - The name of the source association (model referencing object)
-        # options - Options hash
+        # options - Options hash (default: {}):
+        #           :method     - Name of referencer attribute containing text references (required)
+        #           :class_name - The class of the source association, if the name can't be inferred from
+        #                         the association name (optional)
         #
         # Examples
         #
