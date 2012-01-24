@@ -9,7 +9,7 @@ module Hearsay
       #
       # source_name  - The name of the source association (model referencing object)
       # options - Options hash (default: {}):
-      #           :method     - Name of referencer attribute containing text references (required)
+      #           :attribute     - Name of referencer attribute containing text references (required)
       #           :class_name - The class of the source association, if the name can't be inferred from
       #                         the association name (optional)
       #
@@ -20,8 +20,8 @@ module Hearsay
       #
       # Returns nothing.
       def referenced_by(source_name, options = {})
-        attribute_name = options.delete(:method)
-        raise ArgumentError, ":method is required for references" if attribute_name.blank?
+        attribute_name = options.delete(:attribute)
+        raise ArgumentError, ":attribute is required for references" if attribute_name.blank?
         
         association_name = "#{source_name.to_s.singularize}_references".to_sym
         

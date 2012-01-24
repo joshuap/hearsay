@@ -34,7 +34,7 @@ following models:
 ``` ruby
 class Issue < ActiveRecord::Base
   has_many :comments, :polymorphic => true
-  referenced_by :referencing_comments, :method => :body, :class_name => 'Comment'
+  referenced_by :referencing_comments, :attribute => :body, :class_name => 'Comment'
   ...
 end
 ```
@@ -42,7 +42,7 @@ end
 ``` ruby
 class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
-  references :issues, :method => :body, :matcher => /#([0-9]+)/i, :finder => :find_by_number
+  references :issues, :attribute => :body, :matcher => /#([0-9]+)/i, :finder => :find_by_number
   ...
 end
 ```

@@ -9,7 +9,7 @@ module Hearsay
       #
       # source_name  - The name of the source association (model being referenced)
       # options - Options hash (default: {}):
-      #           :method     - Name of model attribute containing text references (required)
+      #           :attribute     - Name of model attribute containing text references (required)
       #           :matcher    - Regular expression to match on (default: /#([0-9]+)/i)
       #           :finder     - The method used to find referenced objects (default: :find_by_id)
       #           :class_name - The class of the source association, if the name can't be inferred from
@@ -19,9 +19,9 @@ module Hearsay
       #
       # Examples
       #
-      #   references :issues, :method => :summary, :matcher => /#([0-9]+)/i, :finder => :find_by_number
+      #   references :issues, :attribute => :summary, :matcher => /#([0-9]+)/i, :finder => :find_by_number
       #   references :referenced_users,
-      #     :method => :body,
+      #     :attribute => :body,
       #     :class_name => 'User',
       #     :matcher => /@(\w)/i,
       #     :finder => :find_by_username
@@ -30,8 +30,8 @@ module Hearsay
       def references(source_name, options = {})
         send(:include, Hearsay::Referencer::InstanceMethods) unless self.included_modules.include?(Hearsay::Referencer::InstanceMethods)
         
-        attribute_name = options.delete(:method)
-        raise ArgumentError, ":method option is required for references" if attribute_name.blank?
+        attribute_name = options.delete(:attribute)
+        raise ArgumentError, ":attribute option is required for references" if attribute_name.blank?
         
         association_name = "#{source_name.to_s.singularize}_references".to_sym
         
