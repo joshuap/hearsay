@@ -7,19 +7,19 @@ reference other models.
 
 Add the gem to your Gemfile:
   
-  $ cat Gemfile
-  ...
-  gem 'hearsay'
-  ...
+$ cat Gemfile
+...
+gem 'hearsay'
+...
 
 Install it with bundler:
   
-  $ bundle install
+$ bundle install
 
 Run the generator to get the migration, and then migrate your database:
 
-  $ rails generate hearsay
-  $ rake db:migrate
+$ rails generate hearsay
+$ rake db:migrate
 
 # Useage
 
@@ -37,9 +37,7 @@ class Issue < ActiveRecord::Base
   referenced_by :referencing_comments, :attribute => :body, :class_name => 'Comment'
   ...
 end
-```
 
-``` ruby
 class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   references :issues, :attribute => :body, :matcher => /#([0-9]+)/i, :finder => :find_by_number
