@@ -9,7 +9,14 @@ module Hearsay
         # Public: Set up referenceable assocations
         #
         # source_name  - The name of the source association (model being referenced)
-        # options - Options hash
+        # options - Options hash (default: {}):
+        #           :method     - Name of model attribute containing text references (required)
+        #           :matcher    - Regular expression to match on (default: /#([0-9]+)/i)
+        #           :finder     - The method used to find referenced objects (default: :find_by_id)
+        #           :class_name - The class of the source association, if the name can't be inferred from
+        #                         the association name (optional)
+        #           :collection - A class or a proc that referenceable objects are scoped to (optional)
+        #           
         #
         # Examples
         #
@@ -53,7 +60,7 @@ module Hearsay
         #
         # source_name  - The name of the source association (model being referenced)
         # attribute_name - The attribute containing references
-        # options - Options hash
+        # options - Options hash (see Referencer::ClassMethods.references for details)
         #
         # Examples
         #
@@ -65,8 +72,8 @@ module Hearsay
           matcher = options[:matcher] || /#([0-9]+)/i
           finder = options[:finder] || :find_by_id
           class_name = options[:class_name] || source_name.to_s.classify
-          source_class = class_name.constantize
-          collection = options[:collection] || source_class
+          class_name = class_name.constantize
+          collection = options[:collection] || class_name
 
           collection = collection.call(self) if collection.is_a?(Proc)
 
