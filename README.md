@@ -64,7 +64,6 @@ that reference a specific issue, for instance.
 
 # To do
 
-* documentation
 * tests
 
 # Contributing
