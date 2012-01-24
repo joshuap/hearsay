@@ -61,7 +61,7 @@ Gem::Specification.new do |s|
   # = MANIFEST =
   s.files = %w[
     Gemfile
-    MIT-LICENSE
+    LICENSE
     README.md
     Rakefile
     app/models/reference.rb
@@ -69,10 +69,9 @@ Gem::Specification.new do |s|
     lib/generators/hearsay_generator.rb
     lib/generators/templates/hearsay_create_references.rb
     lib/hearsay.rb
-    lib/hearsay/acts.rb
-    lib/hearsay/acts/referenceable.rb
-    lib/hearsay/acts/referencer.rb
     lib/hearsay/engine.rb
+    lib/hearsay/referenceable.rb
+    lib/hearsay/referencer.rb
     lib/hearsay/version.rb
     lib/tasks/hearsay_tasks.rake
     test/dummy/Rakefile
