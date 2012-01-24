@@ -7,19 +7,19 @@ reference other models.
 
 Add the gem to your Gemfile:
   
-$ cat Gemfile
-...
-gem 'hearsay'
-...
+    $ cat Gemfile
+    ...
+    gem 'hearsay'
+    ...
 
 Install it with bundler:
   
-$ bundle install
+    $ bundle install
 
 Run the generator to get the migration, and then migrate your database:
 
-$ rails generate hearsay
-$ rake db:migrate
+    $ rails generate hearsay
+    $ rake db:migrate
 
 # Useage
 
