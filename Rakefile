@@ -13,7 +13,7 @@ def name
 end
 
 def version
-  line = File.read("lib/#{name}.rb")[/^\s*VERSION\s*=\s*.*/]
+  line = File.read("lib/#{name}/version.rb")[/^\s*VERSION\s*=\s*.*/]
   line.match(/.*VERSION\s*=\s*['"](.*)['"]/)[1]
 end
 
@@ -138,7 +138,7 @@ end
 
 desc "Validate #{gemspec_file}"
 task :validate do
-  libfiles = Dir['lib/*'] - ["lib/#{name}.rb", "lib/#{name}"]
+  libfiles = Dir['lib/*'] - ["lib/#{name}.rb", "lib/#{name}", "lib/generators", "lib/tasks"]
   unless libfiles.empty?
     puts "Directory `lib` should only contain a `#{name}.rb` file and `#{name}` dir."
     exit!
